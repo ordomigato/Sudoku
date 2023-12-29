@@ -1,0 +1,220 @@
+:root {
+    --main-bg-color: #fff;
+    --font-color: #000;
+    --tile-start-color: whitesmoke;
+    --border-color: lightgray;
+    --number-selected-bg-color: #BFC5F0;
+    --number-selected-color: #fff;
+    --error-color: #F7BEC0;
+    --success-color: #F1EDE3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--font-color);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+hr {
+    width: 500px;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-bg-color);
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+    cursor: move;
+}
+
+#errors {
+    color: var(--error-color);
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    box-sizing: content-box;
+    border: 1px solid var(--border-color);
+}
+
+.tile {
+    position: relative;
+    width: 50px; 
+    height: 50px;
+
+    /* Text */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tile:after {
+    content: '';
+    border: 1px solid var(--border-color);
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.tile:before {
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s linear;
+    z-index: -1;
+}
+
+.tile.placeholder {
+    color: var(--number-selected-bg-color);
+}
+
+.tile.error:before {
+    content: '😡';
+    transition: all 0.3s linear;
+    background-color: var(--error-color);
+}
+
+.tile.success:before {
+    content: '😄';
+    transition: background-color 0.3s linear;
+    background-color: var(--success-color);
+}
+
+#digits {
+    width: 450px;
+    height: 50px;
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    user-select: none;
+}
+
+#digits .number {
+    width: 44px; 
+    height: 44px;
+    border: 1px solid var(--border-color);
+    color: var(--font-color);
+    margin: 2px;
+
+    /* Text */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#digits .number:hover:not(.complete) {
+    background-color: var(--number-selected-bg-color);
+    color: var(--number-selected-color);
+    border-color: var(--number-selected-bg-color);
+    transition: all 0.1s linear;
+}
+
+#digits .number-selected {
+    background-color: var(--number-selected-bg-color);
+    color: var(--number-selected-color);
+    border-color: var(--number-selected-bg-color);
+}
+
+#digits .number.complete {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.tile-start {
+    background-color: var(--tile-start-color);
+}
+
+.bottom-line {
+    border-bottom: 1px solid var(--font-color);
+}
+
+.bottom-line:after {
+    border-bottom: 0;
+}
+
+.right-line {
+    border-right: 1px solid var(--font-color);
+}
+
+.right-line:after {
+    border-right: 0;
+}
+
+.left-line {
+    border-left: 1px solid var(--font-color);
+}
+
+.left-line:after {
+    border-left: 0;
+}
+
+.top-line {
+    border-top: 1px solid var(--font-color);
+}
+
+.top-line:after {
+    border-top: 0;
+}
+
+#controller {
+    position: absolute;
+    padding: 1rem;
+    /* display: flex; */
+    background-color: var(--main-bg-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    cursor: move;
+}
+
+#controller h3 {
+    margin-top: 0;
+}
+
+#controller #digits {
+    display: flex;
+    width: 150px;
+    height: 100%;
+}
